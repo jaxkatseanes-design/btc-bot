@@ -23,7 +23,7 @@ from alpaca.trading.requests import MarketOrderRequest, LimitOrderRequest
 from alpaca.trading.enums import OrderSide, TimeInForce, AssetClass
 from alpaca.data.historical import CryptoHistoricalDataClient
 from alpaca.data.requests import CryptoBarsRequest
-from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
+from alpaca.data.timeframe import TimeFrame
 
 # ─────────────────────────────────────────────
 # CONFIG — edit these before deploying
@@ -34,13 +34,13 @@ RISK_PER_TRADE  = 0.01          # 1% of account per trade
 MAX_POSITIONS   = 3             # Max concurrent open trades
 DAILY_DD_LIMIT  = -0.03         # Stop trading if down 3% on the day
 MIN_SCORE       = 5             # Minimum confluence score to enter (out of 8)
-FULL_SIZE_SCORE = 5             # Score needed for full position (else half size)
+FULL_SIZE_SCORE = 7             # Score needed for full position (else half size)
 ATR_PERIOD      = 14
 RSI_PERIOD      = 14
 MACD_FAST       = 12
 MACD_SLOW       = 26
 MACD_SIGNAL     = 9
-VOLUME_AVG_PERIOD = 20  # volume disabled in scoring
+VOLUME_AVG_PERIOD = 20
 STOP_ATR_MULT   = 1.5           # Stop = entry - (1.5 × ATR)
 TARGET_ATR_MULT = 3.0           # Target = entry + (3.0 × ATR)
 TRAIL_ACTIVATE  = 0.01          # Activate trailing stop at +1% profit
@@ -645,7 +645,7 @@ def run():
 
             # ── Fetch data ──────────────────────────
             bars_1m = get_bars(SYMBOL, TimeFrame.Minute, 100)
-            bars_5m = get_bars(SYMBOL, TimeFrame(5, TimeFrameUnit.Minute), 50)
+            bars_5m = get_bars(SYMBOL, TimeFrame.Minute * 5, 50)
 
             if len(bars_1m) < 50:
                 log.warning("Not enough 1-min bars yet — waiting")
