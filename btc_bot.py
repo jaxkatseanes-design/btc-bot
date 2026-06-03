@@ -34,13 +34,13 @@ RISK_PER_TRADE  = 0.01          # 1% of account per trade
 MAX_POSITIONS   = 3             # Max concurrent open trades
 DAILY_DD_LIMIT  = -0.03         # Stop trading if down 3% on the day
 MIN_SCORE       = 5             # Minimum confluence score to enter (out of 8)
-FULL_SIZE_SCORE = 7             # Score needed for full position (else half size)
+FULL_SIZE_SCORE = 5             # Score needed for full position (else half size)
 ATR_PERIOD      = 14
 RSI_PERIOD      = 14
 MACD_FAST       = 12
 MACD_SLOW       = 26
 MACD_SIGNAL     = 9
-VOLUME_AVG_PERIOD = 20
+VOLUME_AVG_PERIOD = 20  # volume disabled in scoring
 STOP_ATR_MULT   = 1.5           # Stop = entry - (1.5 × ATR)
 TARGET_ATR_MULT = 3.0           # Target = entry + (3.0 × ATR)
 TRAIL_ACTIVATE  = 0.01          # Activate trailing stop at +1% profit
