@@ -23,7 +23,7 @@ from alpaca.trading.requests import MarketOrderRequest, LimitOrderRequest
 from alpaca.trading.enums import OrderSide, TimeInForce, AssetClass
 from alpaca.data.historical import CryptoHistoricalDataClient
 from alpaca.data.requests import CryptoBarsRequest
-from alpaca.data.timeframe import TimeFrame
+from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 
 # ─────────────────────────────────────────────
 # CONFIG — edit these before deploying
@@ -645,7 +645,7 @@ def run():
 
             # ── Fetch data ──────────────────────────
             bars_1m = get_bars(SYMBOL, TimeFrame.Minute, 100)
-            bars_5m = get_bars(SYMBOL, TimeFrame.Minute * 5, 50)
+            bars_5m = get_bars(SYMBOL, TimeFrame(5, TimeFrameUnit.Minute), 50)
 
             if len(bars_1m) < 50:
                 log.warning("Not enough 1-min bars yet — waiting")
