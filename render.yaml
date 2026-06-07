@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: btc-paper-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn bot:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120
+    envVars:
+      - key: ALPACA_API_KEY
+        sync: false
+      - key: ALPACA_SECRET_KEY
+        sync: false
